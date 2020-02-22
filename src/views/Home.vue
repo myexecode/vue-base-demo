@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <headerCop />
     home
   </div>
 </template>
