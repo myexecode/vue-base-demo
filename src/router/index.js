@@ -7,7 +7,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
+    component: () => import(/* webpackChunkName: "Home" */ '../views/home')
+  },
+  {
+    path: '/VuexTest',
+    name: 'VuexTest',
+    component: () => import(/* webpackChunkName: "Home" */ '../views/vuexTest')
   }
 ]
 
@@ -18,3 +23,7 @@ const router = new VueRouter({
 })
 
 export default router
+
+export {
+  routes
+}

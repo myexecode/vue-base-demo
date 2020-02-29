@@ -1,0 +1,55 @@
+1, 移动端适配方案：（同react类似）
+    1 设置html根标签字号，以750设计稿为例(注意设置完毕，要给body设置默认字体一般是32px,否则页面默认字体会很大)
+			// designWith-设计稿尺寸
+			function setHtmlFontSizeFn(designWith) {
+			let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+			function recalc(){
+				let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
+				let htmlDom = document.getElementsByTagName('html')[0];
+				htmlDom.style.fontSize = 100 * (htmlWidth / designWith) + 'px';
+			};
+
+			window.addEventListener(resizeEvt, recalc, false);
+			document.addEventListener('DOMContentLoaded', recalc, false);
+			}
+			setHtmlFontSizeFn(750); // js动态设置根标签fontsize
+		或：
+		<style>
+			html{
+				font-size: calc(100vw/750 * 100);
+			}
+		</style>
+
+	2，	利用sass函数把px转成rem
+			@function px2rem($px){
+				$rem : 100px;
+				@return ($px / $rem) + rem;
+			}
+		或：
+			安装postcss-pxtorem插件
+				github地址：https://github.com/cuth/postcss-pxtorem
+            在根目录下创建postcss.config.js（如果有就不用创建了）
+                添加如下配置
+                    module.exports = () => ({
+                        plugins: [
+                            require('autoprefixer')(),
+                            // require(‘postcss-px2rem‘)({ remUnit: 75 })
+                            require('postcss-pxtorem')({
+                                rootValue: 100,
+                                propList: ['*']
+                            })
+                        ]
+                    });
+
+                    配置参数：
+                        rootValue （Number）根元素字体大小。
+                        unitPrecision （数字）允许REM单位增长的十进制数。
+                        propList （数组）可以从px更改为rem的属性。 值必须完全匹配。 使用通配符*启用所有属性。例：[‘*‘] *在单词的开头或结尾使用。（[‘*position*‘]会匹配background-position-y）
+                            用于!与属性不匹配。例：[‘*‘, ‘!letter-spacing‘] 将“not”前缀与其他前缀组合在一起。例：[‘*‘, ‘!font*‘]
+                        selectorBlackList （数组）要忽略的选择器并保留为px。 如果value是string，则检查selector是否包含字符串。 [‘body‘] 会匹配 .body-class
+                            如果value是regexp，它会检查选择器是否与正则表达式匹配。
+                            [/^body$/]会匹配body但不会.body
+                        replace （布尔值）替换包含rems的规则，而不是添加回退。
+                        mediaQuery （布尔值）允许在媒体查询中转换px。
+                        minPixelValue （数字）设置要替换的最小像素值。
