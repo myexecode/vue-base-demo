@@ -23,12 +23,19 @@ axios.interceptors.response.use(function (response) {
     // return new Promise(()=>{}); 若返回一个pending状态的promise则会中断promise链
 });
 
-const axiosSend = function(url, options){
+const axiosSend = function(url, options, headers={}){
+    /** headers:
+     *  'Content-Type': 'application/x-www-form-urlencoded'  url传参key/value格式
+     *                  'application/json'  JSON数据格式
+     *                  'application/octet-stream'  二进制流数据（如常见的文件下载）
+     *                  'multipart/form-data' 需要在表单中进行文件上传时，就需要使用该格式
+     * 其他格式可参考：https://www.cnblogs.com/klb561/p/10090540.html
+    */
     return axios({
         method: 'get',
         url: url,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            ...headers
         },
         ...options
     })
