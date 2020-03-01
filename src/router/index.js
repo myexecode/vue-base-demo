@@ -12,7 +12,12 @@ const routes = [
   {
     path: '/VuexTest',
     name: 'VuexTest',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/vuexTest')
+    component: () => import(/* webpackChunkName: "vuexTest" */ '../views/vuexTest')
+  },
+  {
+    path: '/AxiosTeset',
+    name: 'AxiosTeset',
+    component: () => import(/* webpackChunkName: "AxiosTeset" */ '../views/AxiosTeset')
   }
 ]
 

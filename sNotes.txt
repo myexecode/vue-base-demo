@@ -53,3 +53,34 @@
                         replace （布尔值）替换包含rems的规则，而不是添加回退。
                         mediaQuery （布尔值）允许在媒体查询中转换px。
                         minPixelValue （数字）设置要替换的最小像素值。
+
+2, 接口请求ajax插件 axios 安装
+	cnpm install axios --save
+
+3, vue cli3 脚手架自定义配置：
+	VueCli3全新小白入门教程(基础+实战+vue+fetch+axios+米斯特吴)
+	（视频教程地址：https://ke.qq.com/course/452954?taid=4139622624323930）
+	module.exports = {
+		baseUrl: '/', // 根路径
+		outputDir: '', // 构建输出目录
+		assetsDir: 'assets', // 静态资源目录
+		lintOnSave: false, // 是否开启eslint保存检查 true / false / error
+		devServer: {
+			open: true, // 是否 热自动打开页面
+			host: 'localhost',
+			port: 8080,
+			https: false,
+			hotOnly: false,
+			proxy: {
+				// 配置跨域
+				'/api' : {
+					target: '', //真实的api地址
+					ws: true, // 是否代理 websockets
+					changOrigin: true, // 将主机标头的原点更改为目标URL
+					pathRewrite: {
+						'^/api': '' // 去除掉多余的api。如：http://localhost:8080/api/admin/login -> http://xxx.com:2086/admin/login
+					}
+				}
+			}
+		}
+	}
