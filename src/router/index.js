@@ -18,6 +18,16 @@ const routes = [
     path: '/AxiosTeset',
     name: 'AxiosTeset',
     component: () => import(/* webpackChunkName: "AxiosTeset" */ '../views/AxiosTeset')
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import(/* webpackChunkName: "AxiosTeset" */ '../views/test')
+  },
+  {
+    path: '/formui',
+    name: 'formui',
+    component: () => import(/* webpackChunkName: "AxiosTeset" */ '../views/formui')
   }
 ]
 

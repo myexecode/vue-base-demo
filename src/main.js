@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './components/customInstruct/mDrag'
+
 import headerCop from './components/header'
 
 // 设置全局过滤器

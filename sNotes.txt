@@ -84,3 +84,17 @@
 			}
 		}
 	}
+
+4， scss样式穿透 （可以在添加了scoped作用域的组件中，修改ui库或第三方组件的样式）
+	vue中css样式局部化，sass和stylus穿透
+	- <style lang='scss' scoped>
+		父元素 /deep/ 子元素
+	  </style>
+	- <style lang='stylus' scoped>
+		父元素 >>> 子元素
+	  </style>
+
+5， fastClick插件可以解决移动端click有300ms延迟的问题。
+
+6，vue2-animate.css vue中的css动画库
+	npm i vue2-animate -S
