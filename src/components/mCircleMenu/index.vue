@@ -1,21 +1,21 @@
 <template>
   <div :class="['m_circle_menu']" :style="mBoxStyle">
-    <div class="m_circle_menu_box" :style="{transform: `scale(${getScaling})`}">
+    <div class="m_circle_menu_box">
       <div
         v-for="(item, index) in mList"
         :key="index"
         class="m_circle_menu_item"
-        :style="{transform: `translateX(-50%) rotate(-${mDeg*index}deg)`}"
+        :style="{transform: `translate(-50%, -100%) rotate(-${mDeg*index}deg)`, height: getHeightRadius}"
       >
         <div
           class="m_circle_menu_item_btn"
-          :style="{transform: `translate(-50%, -50%) rotate(${mDeg*index}deg)`}"
+          :style="{transform: `translate(-50%, -50%) rotate(${mDeg*index}deg) scale(${getItemScaleNum})`}"
           @click="itemClickFn(item)"
         >{{item.name || ''}}</div>
       </div>
     </div>
 
-    <div class="m_circle_menu_btn" @click="changeMenuFn">点击</div>
+    <div class="m_circle_menu_btn" @click="changeMenuFn">{{getCenterBtnTxt}}</div>
   </div>
 </template>
 
@@ -36,11 +36,39 @@ export default {
     };
   },
   computed: {
-    getScaling() {
-      return this.menuIsShow ? this.mScalings.max : this.mScalings.min;
+    // 计算半径的变化以达到整体缩放的效果
+    getHeightRadius() {
+      let str = this.mRadius;
+      let num = parseInt(str);
+      let unit = str.replace(num, "");
+      // console.log(num, 'num')
+      let bool = this.onShow === undefined ? this.menuIsShow : this.onShow;
+      // console.log(bool, 'bool-----------')
+      if (bool) {
+        return this.mScalings.max * num + unit;
+      } else {
+        return this.mScalings.min * num + unit;
+      }
+    },
+    // 控制菜单列表项 的缩放
+    getItemScaleNum(){
+      let bool = this.onShow === undefined ? this.menuIsShow : this.onShow;
+      return bool ? this.mScalings.max : this.mScalings.min;
+    },
+    // 中心点按钮文本
+    getCenterBtnTxt() {
+      if (this.onShow !== undefined) {
+        return this.centerBtn.txts[+this.onShow];
+      } else {
+        return this.centerBtn.txts[+this.menuIsShow];
+      }
     }
   },
   props: {
+    onShow: {
+      type: [Boolean, undefined],
+      default: undefined
+    },
     mList: {
       // 列表数据
       type: Array,
@@ -50,8 +78,18 @@ export default {
           { name: "b" },
           { name: "c" },
           { name: "d" },
+          { name: "d" },
+          { name: "d" },
           { name: "f" }
         ];
+      }
+    },
+    centerBtn: {
+      type: Object,
+      default: () => {
+        return {
+          txts: ["点我", "x"]
+        };
       }
     },
     mRadian: {
@@ -74,6 +112,10 @@ export default {
           min: 0
         };
       }
+    },
+    mRadius: {
+      type: String,
+      default: "200px"
     }
   },
   methods: {
@@ -92,33 +134,37 @@ export default {
     // 改变菜单显示/隐藏/收缩
     changeMenuFn() {
       this.menuIsShow = !this.menuIsShow;
-      this.$emit('changeMenu', this.menuIsShow);
+      this.$emit("changeMenu", this.menuIsShow);
     },
     // 点击导航item
-    itemClickFn(arg){
-        this.$emit('itemClick', arg);
+    itemClickFn(arg) {
+      if (this.getItemScaleNum == this.mScalings.max) {
+        this.$emit("itemClick", arg);
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .m_circle_menu {
-  width: 50vw;
-  height: 50vw;
-  position: relative;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  right: 100px;
+  top: 30vh;
+  // background: pink;
 
   &_box {
     width: 100%;
     height: 100%;
-    //   border: 1px solid #ccc;
+    // border: 1px solid #ccc;
     border-radius: 50%;
     position: relative;
-    transition: 0.5s;
   }
 
   &_btn {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -132,12 +178,12 @@ export default {
 
   &_item {
     width: 10px;
-    height: 50%;
     // background: pink;
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 50%;
     transform-origin: bottom center;
+    transition: 0.5s;
   }
   &_item_btn {
     width: 50px;
@@ -151,6 +197,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
   }
 }
 </style>

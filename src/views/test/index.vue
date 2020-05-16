@@ -1,9 +1,7 @@
 <template>
   <div class="test">
     <button class="btn" v-m-drag>btn</button>
-    <!-- <div class="menu_box">
-      <mCircleMenu :mRadian="180" :mBoxStyle="{width: '100%', height: '100%'}" @itemClick='itemClickHandler' />
-    </div> -->
+    <!-- <mCircleMenu :mRadian="180" @itemClick='itemClickHandler' :mScalings="{max: 1, min: 0.3}" /> -->
   </div>
 </template>
 
@@ -16,31 +14,30 @@ export default {
   },
   mounted() {},
   methods: {
-    itemClickHandler(arg){
-      console.log(arg, '-----------')
+    itemClickHandler(arg) {
+      console.log(arg, "-----------");
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .test {
-  position: relative;
+  width: 100vw;
+  height: 100vh;
   .btn {
-    position: absolute;
-    left: 0;
-    top: 0;
+    margin: 100px;
     width: 100px;
     height: 100px;
     background: red;
-  }
-
-  .menu_box{
-    width: 60vw;
-    height: 60vw;
-    position: absolute;
-    right: 0;
-    top: 100px;
-    
+    animation: notifyRun 0.5s infinite alternate;
+    @keyframes notifyRun {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-20px);
+      }
+    }
   }
 }
 </style>
