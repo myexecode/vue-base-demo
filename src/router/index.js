@@ -28,6 +28,12 @@ const routes = [
     path: '/formui',
     name: 'formui',
     component: () => import(/* webpackChunkName: "AxiosTeset" */ '../views/formui')
+  },
+  {
+    path: '/lsStydys/lsFormBox',
+    name: 'lsStydys/lsFormBox',
+    _meta:{title: '自定义双向绑定 表单组件'},
+    component: () => import('../views/lsStudys/lsFormBox')
   }
 ]
 
