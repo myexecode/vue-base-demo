@@ -20,6 +20,16 @@ export default {
         rules: {
             type: Object
         }
+    },
+    methods: {
+        validate(callBack){
+            const tasks = this.$children.filter(item => item.prop).map(item => item.validate())
+            Promise.all(tasks).then(res => {
+                callBack(true);
+            }).catch(err => {
+                callBack(false);
+            })
+        }
     }
 }
 </script>

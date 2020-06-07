@@ -98,3 +98,6 @@
 
 6，vue2-animate.css vue中的css动画库
 	npm i vue2-animate -S
+
+@ 安装表单校验库
+	npm i async-validator -S

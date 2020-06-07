@@ -16,6 +16,8 @@ export default {
     methods: {
         onInput(e){
             this.$emit('input', e.target.value);
+
+            this.$parent.$emit('onValidate'); // 通知父级校验
         }
     }
 }
