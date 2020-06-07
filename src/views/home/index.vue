@@ -23,6 +23,7 @@ export default {
   },
   created() {
     // console.log(routes, 'routes')
+    console.log(process.env.NODE_ENV, 'process.env.NODE_ENV home')
     this.routeList = routes.map(item => {
       return {
         path: item.path,
