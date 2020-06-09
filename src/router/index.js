@@ -34,6 +34,12 @@ const routes = [
     name: 'lsStydys/lsFormBox',
     _meta:{title: '自定义双向绑定 表单组件'},
     component: () => import('../views/lsStudys/lsFormBox')
+  },
+  {
+    path: '/lsStydys/lsTree',
+    name: 'lsStydys/lsTree',
+    _meta:{title: '自定义 递归组件'},
+    component: () => import('../views/lsStudys/lsTree')
   }
 ]
 
