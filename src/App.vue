@@ -7,5 +7,6 @@
 <style lang="scss">
 #app{
   font-size: 32px;
+  color: #ccc;
 }
 </style>
