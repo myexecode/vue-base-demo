@@ -17,7 +17,9 @@ Vue.filter('setWH', (url, arg) => {
 // 设置全局组件
 Vue.component('headerCop', headerCop);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+
 
 new Vue({
   router,

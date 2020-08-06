@@ -1,5 +1,9 @@
+const port = '7070';
+const title = '我爱杨紫';
+
 module.exports = {
     devServer: {
+        port,
         proxy: {
             // 配置跨域
             '/api' : {
@@ -11,5 +15,7 @@ module.exports = {
             }
         }
     },
-    publicPath: './'
+    configureWebpack: {
+        name: title
+    }
 }
