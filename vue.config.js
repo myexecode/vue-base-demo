@@ -1,5 +1,9 @@
 const port = '7070';
 const title = '我爱杨紫';
+const path = require('path');
+const resolve = function(dir){
+    return path.join(__dirname,dir)
+};
 
 module.exports = {
     devServer: {
@@ -17,5 +21,19 @@ module.exports = {
     },
     configureWebpack: {
         name: title
+    },
+    chainWebpack(config){
+        config.module.rule('svg')
+            .exclude.add(resolve('src/svgIcons'))
+                .end();
+
+        config.module.rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/svgIcons'))
+                .end()
+            .use('svg-sprite-loader')
+                .loader('svg-sprite-loader')
+                .options({symbolId: 'icon-[name]'})
+                .end();
     }
 }

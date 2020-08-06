@@ -7,6 +7,11 @@ import store from './store'
 import './components/customInstruct/mDrag'
 
 import headerCop from './components/header'
+// 设置全局组件
+Vue.component('headerCop', headerCop);
+
+import svgIcons from './svgIcons'
+Vue.use(svgIcons); // svg全局组件
 
 // 设置全局过滤器
 Vue.filter('setWH', (url, arg) => {
@@ -14,8 +19,7 @@ Vue.filter('setWH', (url, arg) => {
   return url.replace(/w\.h/, arg);
 })
 
-// 设置全局组件
-Vue.component('headerCop', headerCop);
+
 
 Vue.config.productionTip = false;
 

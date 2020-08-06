@@ -1,5 +1,7 @@
 <template>
   <div class="test" >
+    <svg-Icon />
+    <svg-Icon iconClass="qq" />
     <tA :foo.sync="modal.name"/>
   </div>
 </template>
