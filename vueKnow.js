@@ -1,6 +1,6 @@
 // vue2.0
 module.exports = {
-    version: 'vue2.0',
+    name: 'vue2.0',
     contents: [{
             keyWord: 'vue不支持ie8及以下版本，因为 Vue 使用了 IE8 无法模拟的 ECMAScript 5 特性',
             des: ``,
