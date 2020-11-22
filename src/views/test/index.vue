@@ -1,28 +1,37 @@
 <template>
-  <div class="test" >
-    <svg-Icon />
-    <svg-Icon iconClass="qq" />
-    <tA :foo.sync="modal.name"/>
+  <div class="test">
+    <svg-Icon/>
+    <svg-Icon iconClass="qq"/>
+    <tC>
+      <tA :foo.sync="modal.name"/>
+    </tC>
   </div>
 </template>
 
 <script>
-import tA from "./tA";
+import tA from './tA'
+import tC from './tC'
 export default {
-  name: "test",
+  name: 'test',
+  componentName: 'test',
   components: {
-    tA
+    tA,
+    tC
   },
   data() {
     return {
       modal: {
-        name: "a"
+        name: 'a'
       }
-    };
+    }
   },
-  mounted() {},
+  mounted() {
+    this.$on('my.test', arg => {
+      console.log(arg, 'app--------my.test---')
+    })
+  },
   methods: {}
-};
+}
 </script>
 <style lang="scss" scoped>
 .test {
