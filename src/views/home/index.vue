@@ -10,7 +10,7 @@
       >{{rItem._meta? rItem._meta.title:rItem.name}}</div>
     </div>
 
-    <div class="btn">btn</div>
+    <reander-test level='1'>aaa</reander-test>
   </div>
 </template>
 
@@ -21,6 +21,10 @@ import { routes } from "../../router";
 
 export default {
   name: "home_index",
+  beforeRouteUpdate(to, from, next){
+    console.log(to, 'beforeRouteUpdate')
+    next()
+  },
   data() {
     return {
       routeList: []
@@ -64,22 +68,16 @@ export default {
   .router_list_wrap {
     display: flex;
     flex-wrap: wrap;
+    color: #ffffff;
     .item {
       width: 200px;
       height: 200px;
-      background: yellow;
+      background: pink;
       margin: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-  }
-
-  .btn {
-    width: 750px;
-    height: 100px;
-    background: pink;
-    text-align: center;
   }
 }
 </style>
