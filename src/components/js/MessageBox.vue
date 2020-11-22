@@ -18,13 +18,14 @@ export default {
 <style lang="scss" scoped>
 .message_box{
     position: fixed;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     left: 0px;
     right: 0px;
     top: 0px;
     bottom: 0px;
     margin: auto;
+    font-size: 30px;
     box-shadow: 2px 2px 2px 2px #ccc;
     .title{
         line-height: 30px;
